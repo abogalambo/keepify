@@ -5,24 +5,26 @@
 
 Gem::Specification.new do |s|
   s.name = "keepify"
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["thedecimal"]
-  s.date = "2013-10-21"
-  s.description = "TODO: longer description of your gem"
+  s.date = "2013-11-04"
+  s.description = "Keepify track events with properties directly from your backend"
   s.email = "yaser@rubikal.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
+    "keepify.gemspec",
     "lib/keepify.rb",
     "test/helper.rb",
     "test/test_keepify.rb"
@@ -31,7 +33,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "2.0.0.rc.2"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "Keepify track events with properties directly from your backend"
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
