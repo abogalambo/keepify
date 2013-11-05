@@ -15,7 +15,7 @@
 
   *Default: false*
 
-  Built in async feature that starts a thread to send the request. This solution may become inefficient if your application generates events at a high rate. in that case, consider using a more robust solution such as delegating the tracking to a background job using resque.
+  Built in async feature. When set to true, the http tracking requests are sent from a separate thread. This solution may become inefficient if your application generates events at a high rate. in that case, consider using a more robust solution such as using eventmachine or delegating the tracking to a background job using resque.
 
 ### Tracking events
 
