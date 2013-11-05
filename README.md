@@ -9,8 +9,13 @@
 ### Initialize Keepify
 
 ```ruby
-  @keepify = Keepify::Tracker.new(YOUR_KEEPIFY_API_TOKEN)
+  @keepify = Keepify::Tracker.new(YOUR_KEEPIFY_API_TOKEN, asynch)
 ```
+* **async** : Boolean
+
+  *Default: false*
+
+  Built in async feature that starts a thread to send the request. This solution may become inefficient if your application generates events at a high rate. in that case, consider using a more robust solution such as delegating the tracking to a background job using resque.
 
 ### Tracking events
 
