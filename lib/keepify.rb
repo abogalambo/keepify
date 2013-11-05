@@ -1,5 +1,6 @@
 require 'net/http'  
 require 'uri'
+require 'logger'
 
 module Keepify
 	REQUEST_URL = 'http://analytics.keepify.com/kpy.png'
@@ -7,10 +8,15 @@ module Keepify
 
 	class Tracker
 
-		def initialize(client_id)
+		def initialize(client_id, async = false)
 			raise "client_id must be supplied" if(client_id.nil? || client_id.empty?)
+			if async
+				require 'thread'
+				@async = true
+			end
 			@options = {}
 			@options[:kpusr] = client_id
+			@logger = Logger.new(STDOUT)
 		end
 
 		def trackEvent(event_type, user_id, options = {})
@@ -26,11 +32,24 @@ module Keepify
 				options[:kpuid] = user_id
 				options[:kpet] = event_type
 			end
-       		
+
 			uri = URI(REQUEST_URL)
 			uri.query = URI.encode_www_form(options)
+
+			if(@async)
+				Thread.new {
+					send_request(uri)
+				}
+			else
+				send_request(uri)
+			end
+			
+		end
+
+		private
+		def send_request(uri)
 			res = Net::HTTP.get_response(uri)
-			puts res.body if res.is_a?(Net::HTTPSuccess)
+			@logger.error res.message unless res.is_a?(Net::HTTPSuccess)
 		end
 	end
 end
